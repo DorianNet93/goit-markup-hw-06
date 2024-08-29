@@ -125,12 +125,14 @@ body {
   font-size: 16px;
   color:  #2E2F42;
   text-decoration: none;
-  padding: 24px 0;
+  /* padding: 24px 0; */
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   font-style: normal;
   position: relative; /* Чтобы псевдоэлемент ::after был правильно позиционирован */
   z-index: 1; /* Убедитесь, что текст находится выше псевдоэлемента */
 }
+
+
 
 .menu-link:hover,
 .menu-link:focus, 
@@ -144,28 +146,6 @@ body {
 }
 
 /* Стили для черточки под ссылками в меню */
-.menu-item .menu-link::after {
-  content: ''; /* Псевдоэлемент для черточки */
-  width: 100%; 
-  position: absolute; 
-  left: 0; 
-  bottom: -1px; 
-  height: 4px; 
-  background-color: #404bbf; /* Цвет черточки */
-  border-radius: 2px; 
-  opacity: 0; /* Скрываем черточку по умолчанию */
-  transform: scaleX(0); /* Черточка скрыта */
-  transform-origin: bottom right;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 250ms cubic-bezier(0.4, 0, 0.2, 1); 
-  z-index: -1;/
-}
-
-.menu-item .menu-link:hover::after,
-.menu-item .menu-link:focus::after {
-  opacity: 1; /* Показываем черточку при наведении или фокусе */
-  transform: scaleX(1); /* Черточка видима */
-}
 
 
 .header-container {
@@ -201,6 +181,9 @@ body {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .menu-close-btn {
@@ -220,7 +203,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  margin-bottom: 168px;
 }
 
 
@@ -373,7 +355,7 @@ body {
 
 .studio__item {
   flex-basis: calc(100% - 32);
-  margin-bottom: 72px;
+  
 }
 
 .studio__item-contein-svg {
@@ -429,7 +411,6 @@ body {
 }
 
 .team__item {
-  flex-basis: calc(100% - 28px);
   border-radius: 0 0 4px 4px;
   overflow: hidden;
   background-color: #ffffff;
@@ -519,7 +500,6 @@ body {
 }
 
 .portfolio__item {
-  width: calc(100% - 32px);
   text-align: left;
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -611,6 +591,7 @@ body {
 .left-footer {
   display: flex;
   flex-direction: column;
+  margin-bottom: 68px;
 }
 
 .footer__link.logo {
@@ -629,7 +610,7 @@ body {
 .footer__text {
   color: #F4F4FD;
   max-width: 264px;
-  margin-bottom: 68px;
+
    
 }
 
@@ -1025,6 +1006,14 @@ body {
     display: flex;
   }
 
+  .contacts-link {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.04em;
+    color: #434455;
+  }
+
 
   .menu, .contacts-list {
     display: flex;
@@ -1079,16 +1068,19 @@ body {
   
   .studio__list {
     flex-direction: row;
+    row-gap: 72px;
+    column-gap: 24px;
   }
 
   .studio__item-title {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: 500;
     
   }
 
   .studio__item {
     flex-basis: calc((100% - 32px) / 2);
+    
   }
 
   .studio__item-title {
@@ -1099,12 +1091,13 @@ body {
   /* ++++++++++++++++++section3+++++++++++++++++++ */
 
   .team {
-    padding: 96px 0px 56px 0px;
+    padding: 96px 0px 96px 0px;
   }
 
   .team__list {
     flex-direction: row;
-    gap: 24px;
+    column-gap: 24px;
+    row-gap: 64px;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -1112,7 +1105,7 @@ body {
 
   .team__item {
     flex-basis: calc((100% - 216px) / 2);
-    margin-bottom: 40px
+    
   }
 
 
@@ -1134,7 +1127,7 @@ body {
 }
 
 .portfolio__item {
-  width: calc((100% - 32px) / 2);
+  width: calc((100% - 24px) / 2);
 }
 
 /* ++++++++++++++++++footer+++++++++++++++++++ */
@@ -1145,9 +1138,21 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 24px;
+  column-gap: 24px;
+  row-gap: 72px;
   align-items: top;
   align-items: flex-start;
+}
+
+.footer__link.logo {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+.left-footer,
+.right-footer {
+  margin-bottom: 0;
 }
 
 .right-footer-text {
@@ -1190,7 +1195,7 @@ body {
 
 /* qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq */
 
-@media screen and (min-width: 1168px) {
+@media screen and (min-width: 1158px) {
   .container {
     max-width: 1158px;
     margin: 0 auto;
@@ -1204,7 +1209,32 @@ body {
   .contacts-list {
     display: flex;
     flex-direction: row;
+    gap: 40px;
   }
+
+  .menu-item .menu-link::after {
+    content: ''; /* Псевдоэлемент для черточки */
+    width: 100%; 
+    position: absolute; 
+    left: 0; 
+    bottom: -26px; 
+    height: 4px; 
+    background-color: #404bbf; /* Цвет черточки */
+    border-radius: 2px; 
+    opacity: 0; /* Скрываем черточку по умолчанию */
+    transform: scaleX(0); /* Черточка скрыта */
+    transform-origin: bottom right;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 250ms cubic-bezier(0.4, 0, 0.2, 1); 
+    z-index: -1;/
+  }
+  
+  .menu-item .menu-link:hover::after,
+  .menu-item .menu-link:focus::after {
+    opacity: 1; /* Показываем черточку при наведении или фокусе */
+    transform: scaleX(1); /* Черточка видима */
+  }
+  
 
 
 
@@ -1319,6 +1349,7 @@ body {
   .left-footer {
     text-align: left;
     display: block;
+    margin-bottom: 0;
   }
 
   .footer__text{
